@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerDezUqs7;
+namespace ContainerEkNCopF;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -517,7 +517,13 @@ class srcApp_KernelDevDebugContainer extends Container
         $a->setNamingStrategy(new \Doctrine\ORM\Mapping\UnderscoreNamingStrategy());
         $a->setQuoteStrategy(new \Doctrine\ORM\Mapping\DefaultQuoteStrategy());
         $a->setEntityListenerResolver(new \Doctrine\Bundle\DoctrineBundle\Mapping\ContainerEntityListenerResolver($this));
-        $a->setRepositoryFactory(new \Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory(($this->privates['.service_locator.9_yeNH1'] ?? ($this->privates['.service_locator.9_yeNH1'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [], [])))));
+        $a->setRepositoryFactory(new \Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory(new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'App\\Repository\\ProduitRepository' => ['privates', 'App\\Repository\\ProduitRepository', 'getProduitRepositoryService.php', true],
+            'App\\Repository\\UserRepository' => ['privates', 'App\\Repository\\UserRepository', 'getUserRepositoryService.php', true],
+        ], [
+            'App\\Repository\\ProduitRepository' => '?',
+            'App\\Repository\\UserRepository' => '?',
+        ])));
 
         $this->services['doctrine.orm.default_entity_manager'] = $instance = \Doctrine\ORM\EntityManager::create(($this->services['doctrine.dbal.default_connection'] ?? $this->getDoctrine_Dbal_DefaultConnectionService()), $a);
 
